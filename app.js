@@ -59,3 +59,4 @@ window.FirestoreService = {
 };
 
 console.log("✅ Firestore Service Ready");
+console.log("VERSION 2 - " + new Date().toLocaleTimeString());
