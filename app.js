@@ -8,7 +8,7 @@ import {
 
 // Firebase configuration
 const firebaseConfig = {
-  apiKey: "YOUR API KEY",
+  apiKey: "AIzaSyDXRwQuyO3jvj8aHyb90lbl90pGLFJ1VP0",
   authDomain: "project-pyramid-35343.firebaseapp.com",
   projectId: "project-pyramid-35343",
   storageBucket: "project-pyramid-35343.firebasestorage.app",
