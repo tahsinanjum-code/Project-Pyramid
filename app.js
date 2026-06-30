@@ -2,7 +2,15 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
 
 // Firestore
-import { getFirestore } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+import {
+  getFirestore,
+  collection,
+  doc,
+  getDocs,
+  getDoc,
+  setDoc,
+  deleteDoc
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
 // Firebase configuration
 const firebaseConfig = {
@@ -21,5 +29,33 @@ const db = getFirestore(app);
 console.log("✅ Firebase Connected");
 console.log("✅ Firestore Connected");
 
-// Make Firestore available to the rest of the page
+// Make Firestore available everywhere
 window.db = db;
+
+// Firestore helper methods
+window.FirestoreService = {
+
+  async save(collectionName, id, data) {
+    await setDoc(doc(db, collectionName, id), data);
+  },
+
+  async load(collectionName, id) {
+    const snap = await getDoc(doc(db, collectionName, id));
+    return snap.exists() ? snap.data() : null;
+  },
+
+  async loadAll(collectionName) {
+    const snap = await getDocs(collection(db, collectionName));
+    return snap.docs.map(d => ({
+      id: d.id,
+      ...d.data()
+    }));
+  },
+
+  async delete(collectionName, id) {
+    await deleteDoc(doc(db, collectionName, id));
+  }
+
+};
+
+console.log("✅ Firestore Service Ready");
