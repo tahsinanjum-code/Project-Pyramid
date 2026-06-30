@@ -40,4 +40,29 @@ async function testFirestore() {
   }
 }
 
+// Write a test document to Firestore
+async function testFirestore() {
+
+  console.log("Step 1 - Function started");
+
+  try {
+
+    console.log("Step 2 - About to write");
+
+    await setDoc(doc(db, "test", "connection"), {
+      message: "Hello Firestore!",
+      time: new Date().toISOString()
+    });
+
+    console.log("Step 3 - Write successful");
+
+  } catch (error) {
+
+    console.error("Step 4 - Error");
+    console.error(error);
+
+  }
+
+}
+
 testFirestore();
